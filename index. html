@@ -137,16 +137,8 @@
 </div>
 
 <script>
-let data = JSON.parse(localStorage.getItem("keuangan_data")) || [];
-let saldo = parseInt(localStorage.getItem("keuangan_saldo")) || 0;
-
-updateSaldo();
-tampilkanTabel();
-
-function simpanLocal() {
-    localStorage.setItem("keuangan_data", JSON.stringify(data));
-    localStorage.setItem("keuangan_saldo", saldo);
-}
+let data = [];
+let saldo = 0;
 
 function updateSaldo() {
     document.getElementById("saldo").innerText = "Rp " + saldo.toLocaleString();
@@ -187,7 +179,6 @@ function tambahData() {
     if (jenis == "pemasukan") saldo += jumlah;
     else saldo -= jumlah;
 
-    simpanLocal();
     updateSaldo();
     tampilkanTabel();
 
@@ -203,7 +194,6 @@ function hapusData(index) {
 
     data.splice(index, 1);
 
-    simpanLocal();
     updateSaldo();
     tampilkanTabel();
 }
